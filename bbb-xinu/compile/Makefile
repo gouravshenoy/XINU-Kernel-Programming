@@ -22,6 +22,7 @@ XINUBIN		=	$(TOPDIR)/compile/xinu.bin
 XINUBOOT	=	$(TOPDIR)/compile/xinu.boot
 BUILDMAKE	=	$(TOPDIR)/compile/bin/build-make
 MKVERS		=	$(TOPDIR)/compile/bin/mkvers
+APPSDIR		=	$(TOPDIR)/apps
 
 MAKEDEP		=	$(CC) -M -MG
 
@@ -41,6 +42,7 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/device/rfs			\
 			-s $(TOPDIR)/net  'arp_dump*'  		\
 				'dhcp_dump*'  pxe.c		\
+			-s $(APPSDIR)		  		\
 			-s $(TOPDIR)/shell  'xsh_rdstest*'
 
 INCLUDE		=	-I$(TOPDIR)/include
