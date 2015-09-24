@@ -1,4 +1,4 @@
-# REPORT ASSIGNMENT 1
+# REPORT ASSIGNMENT 2
 
 ### Q: Does your program output any garbage? If yes, Why?
 A: No! The program does not output any garbage value, but what is observed is that the output is totally out of sync. The producer and consumer processes execute at erratic times and hence the produced and consumed values overlap due to lack of synchronization between the 2 processes.
