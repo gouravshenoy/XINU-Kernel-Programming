@@ -1,10 +1,10 @@
 #include <xinu.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 /* Global variable for producer consumer */
 extern int n; /* declaration */
+
+/* Declare the required semaphores */
+extern sid32 consumed, produced;
 
 /* function prototypes */
 void consumer(int count);

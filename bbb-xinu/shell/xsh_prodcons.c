@@ -1,6 +1,10 @@
 #include <prodcons.h>
 
-int n;	/* global variable definition */
+/* global variable definition */
+int n;
+
+/* global semaphores definition */
+sid32 produced, consumed;
 
 /*------------------------------------------------------------------------
  * xsh_prodcons - Producer Consumer Problem
@@ -29,6 +33,10 @@ shellcmd xsh_prodcons(int nargs, char *args[])
 	/* default count value of 2000 */
 	int count = 2000;
 	n = 0;
+
+	/* initialize the semaphores */
+	produced = semcreate(0);
+	consumed = semcreate(1);
 
 	if(nargs == 2){
 	/* Assign value of arg to count */
