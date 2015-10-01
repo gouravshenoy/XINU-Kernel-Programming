@@ -1,4 +1,5 @@
 How exactly is sychronization achieved using semaphore in our assignnment?
+
 Ans) Syncronisation is achieved using two semaphores, produced and consumed. Initially, the produced semaphore's count is set to 0 and the consumed semaphore's
 count is set to 1.
 When the producer code first enters the for loop, it calls wait(consumed) which decrements the count of semaphore consumed to 0. Since the value is non-negative,
