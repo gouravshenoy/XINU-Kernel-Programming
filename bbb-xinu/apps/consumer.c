@@ -9,9 +9,12 @@ void consumer(int count)
 		wait(produced);
 		
 		/* Consume the item */
-		printf("Consumed: %d \n", n);
+		kprintf("Consumed: %d \n", n);
 
 		/* Signal an item has been consumed */
 		signal(consumed);
 	}
+
+	/* Delete the semaphores */	
+	semdelete(consumed);
 }

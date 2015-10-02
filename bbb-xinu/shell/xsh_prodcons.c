@@ -39,7 +39,7 @@ shellcmd xsh_prodcons(int nargs, char *args[])
 	consumed = semcreate(1);
 
 	if(nargs == 2){
-	/* Assign value of arg to count */
+	/* Assign value of arg to count */			
 		count = atoi(args[1]);
 	}
 

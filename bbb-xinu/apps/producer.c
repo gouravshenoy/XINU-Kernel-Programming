@@ -10,9 +10,12 @@ void producer(int count)
 		
 		/* Produce a value */
 		n++;
-		printf("Produced: %d \n", n);
+		kprintf("Produced: %d \n", n);
 
 		/* Signal that value has been produced */
 		signal(produced);
 	}
+
+	/* Delete the semaphores */
+	semdelete(produced);
 }
