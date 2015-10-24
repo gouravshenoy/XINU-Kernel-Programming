@@ -1,6 +1,6 @@
 #include <prodcons.h>
 
-void consumer(int count)
+void consumer(int count, pid32 pid)
 {
 	int i;
 
@@ -15,6 +15,6 @@ void consumer(int count)
 		signal(consumed);
 	}
 
-	/* Delete the semaphores */	
-	semdelete(consumed);
+	/* send message to parent */
+	send(pid, "Consumer finished");
 }

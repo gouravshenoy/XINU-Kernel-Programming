@@ -15,7 +15,4 @@ void producer(int count)
 		/* Signal that value has been produced */
 		signal(produced);
 	}
-
-	/* Delete the semaphores */
-	semdelete(produced);
 }
