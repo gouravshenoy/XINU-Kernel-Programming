@@ -13,7 +13,7 @@
 #define FUTURE_SHARED 		2
 #define FUTURE_QUEUE		3
 
-#define MAX_SIZE		50
+#define MAX_SIZE		100
 
 /* main program pid */
 extern pid32 main_pid;
