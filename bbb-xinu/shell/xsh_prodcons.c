@@ -44,17 +44,18 @@ shellcmd xsh_prodcons(int nargs, char *args[])
 		printf("----- FUTURE_EXCLUSIVE -----\n");
 		/* Allocate futures */
 		f_exclusive = future_alloc(FUTURE_EXCLUSIVE);
-		if(f_shared == NULL) {
+		if(f_exclusive == NULL) {
 			printf("Future Allocation Failed\n");
 			return SYSERR;
 		}
 
 		/* Create the producer & consumer and put them in the ready queue */
 		resume( create(future_cons, 1024, 20, "fcons1", 1, f_exclusive) );
-		resume( create(future_cons, 1024, 20, "fcons1", 1, f_exclusive) );
+		resume( create(future_prod, 1024, 20, "fprod1", 1, f_exclusive) );
 
 		/* Delete the exclusive future */
 		future_free(f_exclusive);
+		sleep(1);
 
 		printf("----- FUTURE_SHARED -----\n");
 		/* Allocate futures */
@@ -71,6 +72,12 @@ shellcmd xsh_prodcons(int nargs, char *args[])
 		resume( create(future_cons, 1024, 20, "fcons5", 1, f_shared) );
 		resume( create(future_prod, 1024, 20, "fprod2", 1, f_shared) );	
 		
+		/* wait for a message */
+		receive();
+
+		/* de-allocate the futures created */
+		future_free(f_shared);
+
 		sleep(1);
 
 		printf("----- FUTURE_QUEUE -----\n");
@@ -92,10 +99,10 @@ shellcmd xsh_prodcons(int nargs, char *args[])
 		resume( create(future_prod, 1024, 20, "fprod6", 1, f_queue) );	
 		
 		/* wait for a message */
-		//receive();
+		receive();
 
 		/* de-allocate the futures created */
-		//future_free(f_shared);
+		future_free(f_queue);
 		return OK;
 	}
 	else {
