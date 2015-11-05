@@ -84,3 +84,6 @@ shellcmd xsh_prodcons      (int32, char *[]);
 
 /* in file xsh_future.c */
 shellcmd xsh_future      (int32, char *[]);
+
+/* in file xsh_memmgr.c */
+shellcmd xsh_memmgr      (int32, char *[]);

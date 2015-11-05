@@ -1,6 +1,6 @@
 /* kill.c - kill */
 
-#include <xinu.h>
+#include <memmgr.h>
 
 /*------------------------------------------------------------------------
  *  kill  -  Kill a process and remove it from the system
@@ -13,6 +13,8 @@ syscall	kill(
 	intmask	mask;			/* Saved interrupt mask		*/
 	struct	procent *prptr;		/* Ptr to process' table entry	*/
 	int32	i;			/* Index into descriptors	*/
+	char* temp;
+	int32 count;
 
 	mask = disable();
 	if (isbadpid(pid) || (pid == NULLPROC)
@@ -29,7 +31,18 @@ syscall	kill(
 	for (i=0; i<3; i++) {
 		close(prptr->prdesc[i]);
 	}
-	freestk(prptr->prstkbase, prptr->prstklen);
+	
+	temp = prptr->prstkbase;
+	count = 0;
+	for(i=0; i<prptr->prstklen; i++) {
+		if(*temp-- == 99) {
+			count++;
+		}
+	}
+	//printf(stdout, "Left slots: %8d\n", count);
+	stkcount = count;
+
+	//freestk(prptr->prstkbase, prptr->prstklen);
 
 	switch (prptr->prstate) {
 	case PR_CURR:
