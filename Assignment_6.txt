@@ -1,3 +1,5 @@
 Exercise 9.4
 
 Written comparison of the sizes requested in the exercise. Please elaborate on the reason behind the difference.
+
+The new allocation routines ie getmem_new and getstk_new follow first fit and last fit approach respectively, with no track of leftover and rounding. Also the return address is void. So, when the process exits/ killed, memory would not be returned to the free list. Due to this the size of the entire free list is decreased rather than increased. Because the memory block that has been allocated doest not get freed up to the free list, the address of the pointer to the free list doesnt change.
