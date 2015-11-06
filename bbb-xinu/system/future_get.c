@@ -46,8 +46,8 @@ syscall future_get(
 		}
 		
 		/* If Queue is empty, send message */		
-		//if(f->getq_front > f->getq_rear) {
-			//send(main_pid, "Done!");
+		//if(isGetQueueEmpty(f)) {
+		//	send(main_pid, "Done!");
 		//}
 	} //end-if
 

@@ -6,7 +6,7 @@
  *  getmem_new  -  Allocate heap storage, returning lowest word address
  *------------------------------------------------------------------------
  */
-char  	*getmem_new(
+void  	getmem_new(
 	  uint32	nbytes		/* Size of memory requested	*/
 	)
 {
@@ -28,7 +28,7 @@ char  	*getmem_new(
 			prev->mnext = curr->mnext;
 			memlist.mlength -= nbytes;
 			restore(mask);
-			return (char *)(curr);
+			return (void *)(curr);
 
 		} else if (curr->mlength > nbytes) { /* Split big block	*/
 			leftover = (struct memblk *)((uint32) curr +
@@ -38,7 +38,7 @@ char  	*getmem_new(
 			leftover->mlength = curr->mlength - nbytes;
 			memlist.mlength -= nbytes;
 			restore(mask);
-			return (char *)(curr);
+			return (void *)(curr);
 		} else {			/* Move to next block	*/
 			prev = curr;
 			curr = curr->mnext;

@@ -5,7 +5,7 @@ uint32 future_cons(future *fut) {
 	status = future_get(fut, &i);
 	
 	if (status < 1) {
-		kprintf("future_cons | future_get failed\n");
+		printf("future_cons | future_get failed\n");
 		return SYSERR;
 	}
 	

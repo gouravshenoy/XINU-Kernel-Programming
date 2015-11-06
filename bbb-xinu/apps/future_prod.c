@@ -9,7 +9,7 @@ uint32 future_prod(future *fut)
 		j += i;
 	}
 
-	kprintf("set value = %d\n", j);
+	printf("set value = %d\n", j);
 
 	future_set(fut, &j);
 	return OK;

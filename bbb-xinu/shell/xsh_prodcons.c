@@ -53,8 +53,6 @@ shellcmd xsh_prodcons(int nargs, char *args[])
 		resume( create(future_cons, 1024, 20, "fcons1", 1, f_exclusive) );
 		resume( create(future_prod, 1024, 20, "fprod1", 1, f_exclusive) );
 
-		/* Delete the exclusive future */
-		future_free(f_exclusive);
 		sleep(1);
 
 		printf("----- FUTURE_SHARED -----\n");
@@ -73,10 +71,7 @@ shellcmd xsh_prodcons(int nargs, char *args[])
 		resume( create(future_prod, 1024, 20, "fprod2", 1, f_shared) );	
 		
 		/* wait for a message */
-		receive();
-
-		/* de-allocate the futures created */
-		future_free(f_shared);
+		//receive();
 
 		sleep(1);
 
@@ -100,6 +95,13 @@ shellcmd xsh_prodcons(int nargs, char *args[])
 		
 		/* wait for a message */
 		receive();
+
+		
+		/* Delete the exclusive future */
+		future_free(f_exclusive);
+
+		/* de-allocate the futures created */
+		future_free(f_shared);
 
 		/* de-allocate the futures created */
 		future_free(f_queue);
