@@ -40,11 +40,12 @@ struct	arppacket {			/* ARP packet for IP & Ethernet	*/
 };
 #pragma pack()
 
-struct	arpentry {			/* Entry in the ARP cache	*/
-	int32	arstate;		/* State of the entry		*/
-	uint32	arpaddr;		/* IP address of the entry	*/
-	pid32	arpid;			/* Waiting process or -1 	*/
-	byte	arhaddr[ARP_HALEN];	/* Ethernet address of the entry*/
+struct	arpentry {			/* Entry in the ARP cache	 */
+	int32	arstate;		/* State of the entry		 */
+	uint32	arpaddr;		/* IP address of the entry	 */
+	pid32	arpid;			/* Waiting process or -1 	 */
+	byte	arhaddr[ARP_HALEN];	/* Ethernet address of the entry */
+	uint32	clktime;		/* Time the address was resolved */
 };
 
 extern struct	arpentry arpcache[];
