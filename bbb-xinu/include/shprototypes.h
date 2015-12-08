@@ -90,3 +90,6 @@ shellcmd xsh_memmgr      (int32, char *[]);
 
 /* in file xsh_udptest.c */
 shellcmd xsh_udptest      (int32, char *[]);
+
+/* in file xsh_udpfuture.c */
+shellcmd xsh_udpfuture      (int32, char *[]);
