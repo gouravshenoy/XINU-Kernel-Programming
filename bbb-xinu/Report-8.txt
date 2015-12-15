@@ -1,0 +1,68 @@
+DESCRIPTION:
+
+int fs_open(char *filename, int flags):
+
+filename: name of the file
+
+flags: mode the file needs to be opened
+
+This function opens a file and returns the corresponding file descriptor based on the filename and flags. It first loops through the directory and checks if the file with the given filename exists, if it exists, it gets the inode. It then gets the inode information based on the inode number and updates the inode information, along with updating the file table and returns the allocated descriptor.
+
+
+int fs_close(int fd):
+
+fd: the file descriptor of the file to be closed
+
+It takes the file descriptor and updates the inode and file table and returns OK or SYSERR.
+
+
+
+int fs_create(char *filename, int mode):
+
+filename: name of the file
+
+flags: mode the file needs to be opened
+
+It loops through the directory to see if it already exists, if doesn’t exist, it creates a new entry in the directory. In case the number of files reach maximum, it returns error. It then searches for a free inode and adds in description.
+
+
+
+int fs_seek(int fd, int offset):
+
+fd: the file descriptor of the file
+
+offset: new offset
+
+It first gets the file descriptor position from the file table, and then adds the offset to reposition the file descriptor. If the new file descriptor goes beyond the file size, it returns SYSERR.
+
+
+
+int fs_read(int fd, void *buf, int nbytes):
+
+fd: file descriptor
+
+buf: buffer to read the contents
+
+nbytes: number of bytes
+
+It first checks if the number of bytes is less than file size, if not it throws an error. It then reads the bytes, block by block.
+
+
+
+int fs_write(int fd, void *buf, int nbytes):
+
+fd: file descriptor
+
+buf: the buffer from which to read the bytes
+
+nbytes: number of bytes
+
+It first checks if the number of bytes is less than file size, if not it throws an error. It then writes the bytes from the buffer, block by block.
+
+LESSONS LEARNT:
+
+Learnt the entire Xinu file system implementation
+
+CONTRIBUTIONS:
+
+Mutual effort from both the team members.
